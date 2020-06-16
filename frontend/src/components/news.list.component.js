@@ -1,38 +1,53 @@
 import React, { Component } from 'react';
-import NewsData from '../../src/core/data/overview.json'
+const apikeyFile = require('../core/data/apikey')
 
-var articleIndex = 0
-class NewsList extends Component {
-  constructor(props) {
-    super(props);
+function NewsList() {
+  const [error, setError] = React.useState(null);
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [articles, setItems] = React.useState([]);
 
-    this.state = {
-      articleUrl: NewsData.articles[articleIndex].url,
-      articleSource: NewsData.articles[articleIndex].source.name,
-      articleAuthor: NewsData.articles[articleIndex].author,
-      articleDescription: NewsData.articles[articleIndex].description,
-      articlePublishedTimestamp: NewsData.articles[articleIndex].publishedAt,
-    };
-  }
+  // Note: the empty deps array [] means
+  // this useEffect will run once
+  // similar to componentDidMount()
+  React.useEffect(() => {
+    fetch("http://newsapi.org/v2/everything?q=bitcoin&from=2020-05-16&sortBy=publishedAt&apiKey=" + apikeyFile.newsApiKey)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result.articles);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
 
-
-
-
-  render() {
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
     return (
       <div>
-        <h1>NICKS BITCOIN ARTICLES</h1>
-        <h3>Article Number {this.state.articleIndex}</h3>
-        <h2>{this.state.articleDescription}</h2>
-        <h3>Article Source: {this.state.articleSource}</h3>
-        <h3>
-          <a href={this.state.articleUrl}>Original Article URL</a>
-        </h3>
-        <h3>Article Author: {this.state.articleAuthor}</h3>
-        <h3>Article Published at: {this.state.articlePublishedTimestamp}</h3>
-
+        <h1>Bitcoin Articles</h1>
+        <ul>
+          {articles.map(item => (
+            <li key={item.author}>
+              {item.source.name}
+              <br></br>
+              {item.author}
+              <br></br>
+              {item.title}
+            </li>
+          ))}
+        </ul>
       </div>
-    )
+    );
   }
 }
 
