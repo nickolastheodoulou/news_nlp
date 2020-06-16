@@ -127,3 +127,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/model/newsnlp/
+.DS_Store
+.idea/.gitignore
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/news_nlp.iml
+.idea/vcs.xml
+backend/
+frontend/
+model/.DS_Store
+/web_blocker/
+/model/keys.py
