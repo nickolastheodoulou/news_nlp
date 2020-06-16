@@ -135,8 +135,6 @@ dmypy.json
 .idea/modules.xml
 .idea/news_nlp.iml
 .idea/vcs.xml
-backend/
-frontend/
 model/.DS_Store
 /web_blocker/
 /model/keys.py
