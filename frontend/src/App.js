@@ -18,7 +18,6 @@ function App() {
                 language={"en"}
                 country={"us"}
                 pageSize={"10"}
-                pageNumber={"1"}
                 searchKeywordQuery={""}
                 category={""}
           />} />
@@ -31,7 +30,6 @@ function App() {
                 language={"en"}
                 country={"gb"}
                 pageSize={"10"}
-                pageNumber={"1"}
                 category={"business"}
           />} />
 

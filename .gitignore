@@ -139,3 +139,4 @@ model/.DS_Store
 /web_blocker/
 /model/keys.py
 /frontend/src/core/data/apikey.js
+/.idea/workspace.xml

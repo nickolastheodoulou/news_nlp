@@ -7,14 +7,25 @@ function HomeNewsList(props) {
   const [error, setError] = React.useState(null);
   const [isLoaded, setIsLoaded] = React.useState(false);
   const [articles, setItems] = React.useState([]);
+
+  const [pageNumber, setPageNumber] = React.useState(1)
+
   const today = new Date();
   const dateToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+  function incrementPageNumber() {
+    setPageNumber(prevPageNumber => prevPageNumber + 1)
+  }
+
+  function decrementPageNumber() {
+    setPageNumber(prevPageNumber => prevPageNumber - 1)
+  }
 
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
   React.useEffect(() => {
-    fetch("https://newsapi.org/v2/"+props.newsType+"?q="+props.searchKeywordQuery+"&language="+props.language+"&country="+props.country+"&pageSize="+props.pageSize+"&page="+props.pageNumber+"&category="+props.category+"&from="+dateToday+"&sortBy=publishedAt&apiKey="+apikeyFile.newsApiKey)
+    fetch("https://newsapi.org/v2/"+props.newsType+"?q="+props.searchKeywordQuery+"&language="+props.language+"&country="+props.country+"&pageSize="+props.pageSize+"&page="+pageNumber+"&category="+props.category+"&from="+dateToday+"&sortBy=publishedAt&apiKey="+apikeyFile.newsApiKey)
       .then(res => res.json())
       .then(
         (result) => {
@@ -29,7 +40,7 @@ function HomeNewsList(props) {
           setError(error);
         }
       )
-  }, [])
+  }, [pageNumber])
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -56,6 +67,13 @@ function HomeNewsList(props) {
             </li>
           ))}
         </ul>
+
+        <button onClick={decrementPageNumber}>Previous page</button>
+        <span>You are on page {pageNumber}</span>
+        <button onClick={incrementPageNumber}>Next page</button>
+        <br></br>
+        <br></br>
+
       </div>
     );
   }
