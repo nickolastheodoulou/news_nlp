@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-const apikeyFile = require('../core/data/apikey')
+import './news.list.component.css'
+const apikeyFile = require('../../core/data/apikey')
 
 function NewsList() {
   const [error, setError] = React.useState(null);
@@ -10,7 +11,7 @@ function NewsList() {
   // this useEffect will run once
   // similar to componentDidMount()
   React.useEffect(() => {
-    fetch("http://newsapi.org/v2/everything?q=bitcoin&from=2020-05-16&sortBy=publishedAt&apiKey=" + apikeyFile.newsApiKey)
+    fetch("http://newsapi.org/v2/everything?q=bitcoin&from=2020-05-17&sortBy=publishedAt&apiKey=" + apikeyFile.newsApiKey)
       .then(res => res.json())
       .then(
         (result) => {
@@ -33,16 +34,22 @@ function NewsList() {
     return <div>Loading...</div>;
   } else {
     return (
+
       <div>
         <h1>Bitcoin Articles</h1>
         <ul>
           {articles.map(item => (
             <li key={item.author}>
-              {item.source.name}
+              <h3>{item.title}</h3>
+              Source: <a href={item.url}>{item.source.name}</a>
               <br></br>
-              {item.author}
+              Author: {item.author}
+              <img src={item.urlToImage} alt="Logo" />;
               <br></br>
-              {item.title}
+              <br></br>
+              <br></br>
+              <br></br>
+
             </li>
           ))}
         </ul>
