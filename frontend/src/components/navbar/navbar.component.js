@@ -15,7 +15,11 @@ export default class Navbar extends Component {
             </li>
 
             <li className="navbar-item">
-              <Link to="/crypto" className="navbar-brand">Bitcoin</Link>
+              <Link to="/finance" className="navbar-brand">Finance</Link>
+            </li>
+
+            <li className="navbar-item">
+              <Link to="/bitcoin" className="navbar-brand">Bitcoin</Link>
             </li>
 
             <li className="navbar-item">

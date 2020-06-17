@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import './home.news.list.component.css'
+import React from 'react';
+import './news.list.component.css'
 const apikeyFile = require('../../core/data/apikey')
 
-function HomeNewsList() {
+
+function HomeNewsList(props) {
   const [error, setError] = React.useState(null);
   const [isLoaded, setIsLoaded] = React.useState(false);
   const [articles, setItems] = React.useState([]);
-  const pageNumber = 1;
   const today = new Date();
   const dateToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
@@ -14,7 +14,7 @@ function HomeNewsList() {
   // this useEffect will run once
   // similar to componentDidMount()
   React.useEffect(() => {
-    fetch("https://newsapi.org/v2/top-headlines?language=en&country=us&pageSize=10&page="+pageNumber+"&from="+dateToday+"&sortBy=publishedAt&apiKey=" + apikeyFile.newsApiKey)
+    fetch("https://newsapi.org/v2/"+props.newsType+"?q="+props.searchKeywordQuery+"&language="+props.language+"&country="+props.country+"&pageSize="+props.pageSize+"&page="+props.pageNumber+"&category="+props.category+"&from="+dateToday+"&sortBy=publishedAt&apiKey="+apikeyFile.newsApiKey)
       .then(res => res.json())
       .then(
         (result) => {
@@ -39,7 +39,7 @@ function HomeNewsList() {
     return (
 
       <div>
-        <h1>World News</h1>
+        <h1>{props.navbarTitle}</h1>
         <ul>
           {articles.map(item => (
             <li key={item.author}>
