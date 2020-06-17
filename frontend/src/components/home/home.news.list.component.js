@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import './news.list.component.css'
+import './home.news.list.component.css'
 const apikeyFile = require('../../core/data/apikey')
 
-function NewsList() {
+function HomeNewsList() {
   const [error, setError] = React.useState(null);
   const [isLoaded, setIsLoaded] = React.useState(false);
   const [articles, setItems] = React.useState([]);
+  const pageNumber = 1;
+  const today = new Date();
+  const dateToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
   React.useEffect(() => {
-    fetch("http://newsapi.org/v2/everything?q=bitcoin&from=2020-05-17&sortBy=publishedAt&apiKey=" + apikeyFile.newsApiKey)
+    fetch("https://newsapi.org/v2/top-headlines?language=en&country=us&pageSize=10&page="+pageNumber+"&from="+dateToday+"&sortBy=publishedAt&apiKey=" + apikeyFile.newsApiKey)
       .then(res => res.json())
       .then(
         (result) => {
@@ -36,7 +39,7 @@ function NewsList() {
     return (
 
       <div>
-        <h1>Bitcoin Articles</h1>
+        <h1>World News</h1>
         <ul>
           {articles.map(item => (
             <li key={item.author}>
@@ -58,4 +61,4 @@ function NewsList() {
   }
 }
 
-export default NewsList;
+export default HomeNewsList;
