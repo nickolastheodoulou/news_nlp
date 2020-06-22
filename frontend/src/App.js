@@ -13,7 +13,7 @@ function App() {
 
         <Route exact path="/" render={(props) =>
           <News {...props}
-                navbarTitle={"World News"}
+                navbarTitle={"US Global News"}
                 newsType={"top-headlines"}
                 language={"en"}
                 country={"us"}

@@ -21,9 +21,7 @@ function HomeNewsList(props) {
     setPageNumber(prevPageNumber => prevPageNumber - 1)
   }
 
-  // Note: the empty deps array [] means
-  // this useEffect will run once
-  // similar to componentDidMount()
+  // the [pageNumber] means useEffect will run only when the state pageNumber is updated
   React.useEffect(() => {
     fetch("https://newsapi.org/v2/"+props.newsType+"?q="+props.searchKeywordQuery+"&language="+props.language+"&country="+props.country+"&pageSize="+props.pageSize+"&page="+pageNumber+"&category="+props.category+"&from="+dateToday+"&sortBy=publishedAt&apiKey="+apikeyFile.newsApiKey)
       .then(res => res.json())
@@ -50,29 +48,53 @@ function HomeNewsList(props) {
     return (
 
       <div>
-        <h1>{props.navbarTitle}</h1>
+        <h1 style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        >
+          {props.navbarTitle}
+        </h1>
+
         <ul>
           {articles.map(item => (
-            <li key={item.author}>
-              <h3>{item.title}</h3>
-              Source: <a href={item.url}>{item.source.name}</a>
-              <br></br>
-              Author: {item.author}
-              <img src={item.urlToImage} alt="Logo" />;
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
+            <div style={
+              {border: '2px solid black',
+                margin: '10px 0',
+              }
+            }>
+              <ul>
+                <h3>{item.title}</h3>
+                Source: <a href={item.url}>{item.source.name}</a>
+                <br></br>
+                Author: {item.author}
+                <br></br>
+                <img src={item.urlToImage} alt="Logo" />;
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
 
-            </li>
+              </ul>
+            </div>
           ))}
+          <br></br>
         </ul>
 
-        <button onClick={decrementPageNumber}>Previous page</button>
-        <span>You are on page {pageNumber}</span>
-        <button onClick={incrementPageNumber}>Next page</button>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+          <button onClick={decrementPageNumber}>Previous page</button>
+          <span>You are on page {pageNumber}</span>
+          <button onClick={incrementPageNumber}>Next page</button>
+        </div>
         <br></br>
         <br></br>
+
+
 
       </div>
     );
