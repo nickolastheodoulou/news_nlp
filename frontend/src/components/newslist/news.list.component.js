@@ -23,12 +23,14 @@ function HomeNewsList(props) {
 
   // the [pageNumber] means useEffect will run only when the state pageNumber is updated
   React.useEffect(() => {
-    fetch("https://newsapi.org/v2/"+props.newsType+"?q="+props.searchKeywordQuery+"&language="+props.language+"&country="+props.country+"&pageSize="+props.pageSize+"&page="+pageNumber+"&category="+props.category+"&from="+dateToday+"&sortBy=publishedAt&apiKey="+apikeyFile.newsApiKey)
+    fetch(`http://localhost:5000/getnews?newsType=${props.newsType}&language=${props.language}&country=${props.country}&q=${props.q}&category=${props.category}&pageNumber=${props.pageNumber}`, {
+      dataType: 'jsonp'}
+  )
       .then(res => res.json())
       .then(
-        (result) => {
+        (res) => {
           setIsLoaded(true);
-          setItems(result.articles);
+          setItems(res.articles);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -46,16 +48,14 @@ function HomeNewsList(props) {
     return <div>Loading...</div>;
   } else {
     return (
-
       <div>
-        <h1 style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        >
-          {props.navbarTitle}
-        </h1>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
+
+        <h1>{props.navbarTitle}</h1>
 
         <ul>
           {articles.map(item => (
@@ -93,9 +93,6 @@ function HomeNewsList(props) {
         </div>
         <br></br>
         <br></br>
-
-
-
       </div>
     );
   }

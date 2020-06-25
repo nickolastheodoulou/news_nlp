@@ -13,12 +13,21 @@ function App() {
 
         <Route exact path="/" render={(props) =>
           <News {...props}
+                navbarTitle={"Your Search"}
+                newsType={"everything"}
+                q={"apple"}
+                language={"en"}
+                country={""}
+                category={""}
+          />} />
+
+        <Route exact path="/home" render={(props) =>
+          <News {...props}
                 navbarTitle={"US Global News"}
                 newsType={"top-headlines"}
                 language={"en"}
                 country={"us"}
-                pageSize={"10"}
-                searchKeywordQuery={""}
+                q={""}
                 category={""}
           />} />
 
@@ -26,10 +35,9 @@ function App() {
           <News {...props}
                 navbarTitle={"UK business News"}
                 newsType={"top-headlines"}
-                searchKeywordQuery={""}
+                q={""}
                 language={"en"}
                 country={"gb"}
-                pageSize={"10"}
                 category={"business"}
           />} />
 
@@ -37,11 +45,20 @@ function App() {
           <News {...props}
                 navbarTitle={"Bitcoin Articles"}
                 newsType={"everything"}
-                searchKeywordQuery={"bitcoin"}
+                q={"bitcoin"}
                 language={"en"}
                 country={""}
-                pageSize={"10"}
-                pageNumber={"1"}
+                category={""}
+          />} />
+
+
+        <Route exact path="/football" render={(props) =>
+          <News {...props}
+                navbarTitle={"Football"}
+                newsType={"everything"}
+                q={"football"}
+                language={"en"}
+                country={""}
                 category={""}
           />} />
 
