@@ -10,9 +10,6 @@ function HomeNewsList(props) {
 
   const [pageNumber, setPageNumber] = React.useState(1)
 
-  const today = new Date();
-  const dateToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-
   function incrementPageNumber() {
     setPageNumber(prevPageNumber => prevPageNumber + 1)
   }
@@ -23,7 +20,7 @@ function HomeNewsList(props) {
 
   // the [pageNumber] means useEffect will run only when the state pageNumber is updated
   React.useEffect(() => {
-    fetch(`http://localhost:5000/getnews?newsType=${props.newsType}&language=${props.language}&country=${props.country}&q=${props.q}&category=${props.category}&pageNumber=${props.pageNumber}`, {
+    fetch(`http://localhost:5000/getnews?newsType=${props.newsType}&language=${props.language}&country=${props.country}&q=${props.q}&category=${props.category}&pageNumber=${pageNumber}`, {
       dataType: 'jsonp'}
   )
       .then(res => res.json())
