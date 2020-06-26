@@ -20,7 +20,7 @@ function HomeNewsList(props) {
 
   // the [pageNumber] means useEffect will run only when the state pageNumber is updated
   React.useEffect(() => {
-    fetch(`http://localhost:5000/getnews?newsType=${props.newsType}&language=${props.language}&country=${props.country}&q=${props.q}&category=${props.category}&pageNumber=${pageNumber}`, {
+    fetch(`https://murmuring-castle-67752.herokuapp.com/getnews?newsType=${props.newsType}&language=${props.language}&country=${props.country}&q=${props.q}&category=${props.category}&pageNumber=${pageNumber}`, {
       dataType: 'jsonp'}
   )
       .then(res => res.json())
