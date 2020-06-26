@@ -138,5 +138,9 @@ dmypy.json
 model/.DS_Store
 /web_blocker/
 /model/keys.py
-/frontend/src/core/data/apikey.js
+/client/src/core/data/apikey.js
 /.idea/workspace.xml
+
+# Local Netlify folder
+.netlify
+/node_modules/
