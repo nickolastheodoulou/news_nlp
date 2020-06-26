@@ -1,8 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
+
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 const port = process.env.PORT || 5000;
 
@@ -21,6 +24,10 @@ app.get('/getnews', (req, res) => {
     res.send(body)
 
   });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
