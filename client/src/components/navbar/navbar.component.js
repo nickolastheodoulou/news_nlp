@@ -72,13 +72,11 @@ const useStyles = makeStyles((theme) => ({
 function Navbar() {
 
   const classes = useStyles();
-  var query ='';
 
 
-  const onChange = (event) => {
-    query = event.target.value
-    console.log(query);
-  };
+  const [myquery, setmyquery] = React.useState(null);
+  const onChange = (event) => setmyquery(event.target.value)
+
 
   return (
     <div className={classes.root}>
@@ -89,6 +87,12 @@ function Navbar() {
             <MenuIcon />
           </IconButton>
           */}
+
+          <Typography variant="h6" className={classes.title}>
+            <Link to="/fdsa" className={classes.title}>
+              {myquery}
+            </Link>
+          </Typography>
 
           <Typography variant="h6" className={classes.title}>
             <Link to="/home" className={classes.title}>
