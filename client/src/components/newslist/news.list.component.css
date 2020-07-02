@@ -8,3 +8,32 @@ h1 {
     justify-content: center;
     align-items: center;
 }
+
+.divlist{
+    vertical-align: middle;
+    horiz-align: center;
+    text-align: center;
+    width: 1200px;
+    align-items: center;
+    list-style: inside;
+    align-content: center;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+
+
+}
+
+.article{
+    border: 2px solid black;
+    margin: 10px 0;
+    justify-content: center;
+}
+
+.body{
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+

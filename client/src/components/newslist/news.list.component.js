@@ -1,6 +1,5 @@
 import React from 'react';
 import './news.list.component.css'
-const apikeyFile = require('../../core/data/apikey')
 
 
 function HomeNewsList(props) {
@@ -40,12 +39,12 @@ function HomeNewsList(props) {
   }, [pageNumber])
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error.message}</div>
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   } else {
     return (
-      <div>
+      <div className="body">
         <br></br>
         <br></br>
         <br></br>
@@ -54,20 +53,19 @@ function HomeNewsList(props) {
 
         <h1>{props.navbarTitle}</h1>
 
-        <ul>
+        <ul className="divlist">
           {articles.map(item => (
-            <div style={
-              {border: '2px solid black',
-                margin: '10px 0',
-              }
-            }>
+            <div className="article"
+            >
               <ul>
                 <h3>{item.title}</h3>
                 Source: <a href={item.url}>{item.source.name}</a>
                 <br></br>
                 Author: {item.author}
                 <br></br>
-                <img src={item.urlToImage} alt="Logo" />;
+                <a href={item.url}>
+                  <img src={item.urlToImage} alt="Logo" />
+                </a>
                 <br></br>
                 <br></br>
                 <br></br>
@@ -79,11 +77,7 @@ function HomeNewsList(props) {
           <br></br>
         </ul>
 
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}>
+        <div>
           <button onClick={decrementPageNumber}>Previous page</button>
           <span>You are on page {pageNumber}</span>
           <button onClick={incrementPageNumber}>Next page</button>

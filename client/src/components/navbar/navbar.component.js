@@ -73,9 +73,9 @@ function Navbar() {
 
   const classes = useStyles();
 
-
-  const [myquery, setmyquery] = React.useState(null);
-  const onChange = (event) => setmyquery(event.target.value)
+  /* Create hook for the query*/
+  const [query, setQuery] = React.useState(null);
+  const onChange = (event) => setQuery(event.target.value)
 
 
   return (
@@ -90,7 +90,7 @@ function Navbar() {
 
           <Typography variant="h6" className={classes.title}>
             <Link to="/fdsa" className={classes.title}>
-              {myquery}
+              {query}
             </Link>
           </Typography>
 
