@@ -1,5 +1,5 @@
 img{
-    width:100%;
+    width:90%;
     max-width:600px;
 }
 
@@ -13,7 +13,7 @@ h1 {
     vertical-align: middle;
     horiz-align: center;
     text-align: center;
-    width: 1200px;
+    width: 90%;
     align-items: center;
     list-style: inside;
     align-content: center;
@@ -37,3 +37,7 @@ h1 {
     align-content: center;
 }
 
+.pageChange{
+    display: flex;
+    justify-content: center;
+}

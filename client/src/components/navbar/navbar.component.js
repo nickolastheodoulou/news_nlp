@@ -78,6 +78,8 @@ function Navbar() {
   const onChange = (event) => setQuery(event.target.value)
 
 
+
+
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
@@ -86,16 +88,17 @@ function Navbar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          */}
+
 
           <Typography variant="h6" className={classes.title}>
             <Link to="/fdsa" className={classes.title}>
               {query}
             </Link>
           </Typography>
+          */}
 
           <Typography variant="h6" className={classes.title}>
-            <Link to="/home" className={classes.title}>
+            <Link to="/" className={classes.title}>
               Home
             </Link>
           </Typography>
@@ -127,7 +130,7 @@ function Navbar() {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <Link to="/">
+            <Link to="/search">
               <InputBase
                 placeholder="Search…"
                 classes={{

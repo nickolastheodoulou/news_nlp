@@ -11,10 +11,14 @@ function HomeNewsList(props) {
 
   function incrementPageNumber() {
     setPageNumber(prevPageNumber => prevPageNumber + 1)
+    window.scrollTo(0, 0)
+
   }
 
   function decrementPageNumber() {
     setPageNumber(prevPageNumber => prevPageNumber - 1)
+    window.scrollTo(0, 0)
+
   }
 
   // the [pageNumber] means useEffect will run only when the state pageNumber is updated
@@ -77,7 +81,7 @@ function HomeNewsList(props) {
           <br></br>
         </ul>
 
-        <div>
+        <div className="pageChange">
           <button onClick={decrementPageNumber}>Previous page</button>
           <span>You are on page {pageNumber}</span>
           <button onClick={incrementPageNumber}>Next page</button>

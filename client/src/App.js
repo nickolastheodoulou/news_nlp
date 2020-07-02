@@ -5,23 +5,25 @@ import Navbar from "./components/navbar/navbar.component";
 import About from "./components/about/about.component";
 import News from './components/newslist/news.list.component'
 
+
+
 function App() {
   return (
     <Router>
       <div className="container">
         <Navbar />
 
-        <Route exact path="/" render={(props) =>
+        <Route exact path="/search" render={(props) =>
           <News {...props}
                 navbarTitle={"Your Search"}
                 newsType={"everything"}
-                q={"apple"}
+                q={"Apple"}
                 language={"en"}
                 country={""}
                 category={""}
           />} />
 
-        <Route exact path="/home" render={(props) =>
+        <Route exact path="/" render={(props) =>
           <News {...props}
                 navbarTitle={"US Global News"}
                 newsType={"top-headlines"}
