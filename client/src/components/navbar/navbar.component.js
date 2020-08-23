@@ -106,8 +106,8 @@ function Navbar() {
 
 
           <Button color="inherit">
-            <Link to="/finance" className={classes.menuItem}>
-              Finance
+            <Link to="/usbusiness" className={classes.menuItem}>
+              US business
             </Link>
           </Button>
 
@@ -119,9 +119,15 @@ function Navbar() {
             </Button>
           </Link>
 
-          <Link to="/football" className={classes.menuItem}>
+          <Link to="/ethereum" className={classes.menuItem}>
             <Button color="inherit">
-              Football
+              Ethereum
+            </Button>
+          </Link>
+
+          <Link to="/litecoin" className={classes.menuItem}>
+            <Button color="inherit">
+              Litecoin
             </Button>
           </Link>
 

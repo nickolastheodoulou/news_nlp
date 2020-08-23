@@ -33,13 +33,13 @@ function App() {
                 category={""}
           />} />
 
-        <Route exact path="/finance" render={(props) =>
+        <Route exact path="/usbusiness" render={(props) =>
           <News {...props}
-                navbarTitle={"UK business News"}
+                navbarTitle={"US business News"}
                 newsType={"top-headlines"}
                 q={""}
                 language={"en"}
-                country={"gb"}
+                country={"us"}
                 category={"business"}
           />} />
 
@@ -47,18 +47,28 @@ function App() {
           <News {...props}
                 navbarTitle={"Bitcoin Articles"}
                 newsType={"everything"}
-                q={"bitcoin"}
+                q={"\"bitcoin\""}
                 language={"en"}
                 country={""}
                 category={""}
           />} />
 
 
-        <Route exact path="/football" render={(props) =>
+        <Route exact path="/ethereum" render={(props) =>
           <News {...props}
-                navbarTitle={"Football"}
+                navbarTitle={"Ethereum"}
                 newsType={"everything"}
-                q={"football"}
+                q={"ethereum"}
+                language={"en"}
+                country={""}
+                category={""}
+          />} />
+
+        <Route exact path="/litecoin" render={(props) =>
+          <News {...props}
+                navbarTitle={"Litecoin"}
+                newsType={"everything"}
+                q={"litecoin"}
                 language={"en"}
                 country={""}
                 category={""}

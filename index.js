@@ -15,7 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var request = require('request');
 
 const today = new Date();
-const dateToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var dateToday = today.getFullYear()+'-'+(today.getMonth())+'-'+today.getDate();
+
 
 app.get('/getnews', (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
