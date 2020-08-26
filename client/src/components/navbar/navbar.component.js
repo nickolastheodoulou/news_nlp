@@ -131,6 +131,12 @@ function Navbar() {
             </Button>
           </Link>
 
+          <Link to="/apple" className={classes.menuItem}>
+            <Button color="inherit">
+              Apple
+            </Button>
+          </Link>
+
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>

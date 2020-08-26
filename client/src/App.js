@@ -74,6 +74,16 @@ function App() {
                 category={""}
           />} />
 
+        <Route exact path="/apple" render={(props) =>
+          <News {...props}
+                navbarTitle={"Apple"}
+                newsType={"everything"}
+                q={"apple"}
+                language={"en"}
+                country={""}
+                category={""}
+          />} />
+
         <Route path="/about" exact component={About} />
       </div>
     </Router>
