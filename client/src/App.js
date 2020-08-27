@@ -9,9 +9,11 @@ import News from './components/newslist/news.list.component'
 
 function App() {
   return (
+
     <Router>
       <div className="container">
         <Navbar />
+
 
         <Route exact path="/search" render={(props) =>
           <News {...props}
@@ -31,6 +33,7 @@ function App() {
                 country={"us"}
                 q={""}
                 category={""}
+                ticker={""}
           />} />
 
         <Route exact path="/usbusiness" render={(props) =>
@@ -41,16 +44,19 @@ function App() {
                 language={"en"}
                 country={"us"}
                 category={"business"}
+                ticker={""}
           />} />
 
         <Route exact path="/bitcoin" render={(props) =>
           <News {...props}
-                navbarTitle={"Bitcoin Articles"}
+                navbarTitle={"Bitcoin"}
                 newsType={"everything"}
                 q={"\"bitcoin\""}
                 language={"en"}
                 country={""}
                 category={""}
+                ticker={"BTCUSDT"}
+                assetType={'crypocurrency'}
           />} />
 
 
@@ -62,6 +68,8 @@ function App() {
                 language={"en"}
                 country={""}
                 category={""}
+                ticker={"ETHUSDT"}
+                assetType={'crypocurrency'}
           />} />
 
         <Route exact path="/litecoin" render={(props) =>
@@ -72,6 +80,8 @@ function App() {
                 language={"en"}
                 country={""}
                 category={""}
+                ticker={"LTCUSDT"}
+                assetType={'crypocurrency'}
           />} />
 
         <Route exact path="/apple" render={(props) =>
@@ -82,6 +92,7 @@ function App() {
                 language={"en"}
                 country={""}
                 category={""}
+                ticker={""}
           />} />
 
         <Route path="/about" exact component={About} />
