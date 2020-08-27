@@ -59,23 +59,19 @@ function HomeNewsList(props) {
 
         <ul className="divlist">
           {articles.map(item => (
-            <div className="article"
-            >
-              <ul>
-                <h3>{item.title}</h3>
-                Source: <a href={item.url}>{item.source.name}</a>
-                <br></br>
-                Author: {item.author}
-                <br></br>
-                <a href={item.url}>
-                  <img src={item.urlToImage} alt="Logo" />
-                </a>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-
-              </ul>
+            <div className="article">
+              <h3>{item.title}</h3>
+              Source: <a href={item.url}>{item.source.name}</a>
+              <br></br>
+              Author: {item.author}
+              <br></br>
+              <a href={item.url}>
+                <img src={item.urlToImage} alt="Logo" />
+              </a>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
             </div>
           ))}
           <br></br>
