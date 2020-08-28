@@ -30,6 +30,25 @@ function HomeNewsList(props) {
           }
         )
     }
+    else if(props.assetType === 'stock'){
+      fetch(`https://finnhub.io/api/v1/quote?symbol=AAPL&token=bt4lo7f48v6um6kgon20`,{
+        dataType: 'jsonp'}
+      ).then(res => res.json())
+        .then(
+          (res) => {
+            res.c = parseFloat(res.c).toFixed(2);
+
+            setPrice(res.c);
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+    }
 
   }, [])
 
@@ -81,7 +100,7 @@ function HomeNewsList(props) {
         <br></br>
 
 
-        <h1>The current price of {props.navbarTitle} is ${price}</h1>
+        <h1 align='center'>The current price of {props.navbarTitle} is ${price}</h1>
         <h4 align='center'>Source: Binance</h4>
 
         <h1>{props.navbarTitle}</h1>

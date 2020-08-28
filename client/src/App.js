@@ -93,6 +93,7 @@ function App() {
                 country={""}
                 category={""}
                 ticker={""}
+                assetType={'stock'}
           />} />
 
         <Route path="/about" exact component={About} />
