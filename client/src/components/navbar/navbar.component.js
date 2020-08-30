@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import {fade} from "@material-ui/core";
+import articleData from "../../data/articleData";
 
 
 
@@ -97,6 +98,9 @@ function Navbar() {
           </Typography>
           */}
 
+
+
+
           <Typography variant="h6" className={classes.title}>
             <Link to="/" className={classes.title}>
               Home
@@ -104,38 +108,25 @@ function Navbar() {
           </Typography>
 
 
+          {/*
+          loop over all the articles exclusing the home and search as these have unique properties
+          */}
+          <div>
+            {
+              articleData.articles.map((item) => {
+                if((item.path !== "/") && (item.path !==  "/search")){
+                  return (
+                    <Link to={item.path} className={classes.menuItem}>
+                      <Button color="inherit">
+                        {item.navbarTitle}
+                      </Button>
+                    </Link>
+                  )
+                }
 
-          <Button color="inherit">
-            <Link to="/usbusiness" className={classes.menuItem}>
-              US business
-            </Link>
-          </Button>
-
-
-
-          <Link to="/bitcoin" className={classes.menuItem}>
-            <Button color="inherit">
-              Bitcoin
-            </Button>
-          </Link>
-
-          <Link to="/ethereum" className={classes.menuItem}>
-            <Button color="inherit">
-              Ethereum
-            </Button>
-          </Link>
-
-          <Link to="/litecoin" className={classes.menuItem}>
-            <Button color="inherit">
-              Litecoin
-            </Button>
-          </Link>
-
-          <Link to="/apple" className={classes.menuItem}>
-            <Button color="inherit">
-              Apple
-            </Button>
-          </Link>
+              })
+            }
+          </div>
 
 
           <div className={classes.search}>
@@ -158,9 +149,9 @@ function Navbar() {
 
 
 
-          <Link to="/about" className={classes.menuItem}>
+          <Link to={articleData.about.path} className={classes.menuItem}>
             <Button color="inherit">
-              about
+              {articleData.about.navbarTitle}
             </Button>
           </Link>
 

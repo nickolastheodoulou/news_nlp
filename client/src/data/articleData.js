@@ -1,8 +1,7 @@
-import News from "../components/newslist/news.list.component";
 import React from "react";
 
 const articleData = {
-  "work":[
+  "articles":[
     {
       "path": "/search",
       "navbarTitle": "Your Search",
@@ -16,7 +15,7 @@ const articleData = {
     },
     {
       "path": "/",
-      "navbarTitle": "US Global News",
+      "navbarTitle": "Home - US Global News",
       "newsType": "top-headlines",
       "q": "",
       "language": "en",
@@ -84,7 +83,12 @@ const articleData = {
       "assetType":"stock",
       "tickerSource":"finnhub"
     }
-  ]
+  ],
+  "about": {
+    "path": "/about",
+    "navbarTitle": "about",
+
+  }
 }
 
 export default articleData

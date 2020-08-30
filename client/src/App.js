@@ -16,7 +16,7 @@ function App() {
         <Navbar />
         <div>
           {
-            articleData.work.map((item) => {
+            articleData.articles.map((item) => {
               return (
                 <Route exact path={item.path} render={(props) =>
                   <News {...props}
