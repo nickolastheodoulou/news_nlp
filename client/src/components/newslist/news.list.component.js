@@ -101,7 +101,7 @@ function HomeNewsList(props) {
 
 
         <h1 align='center'>The current price of {props.navbarTitle} is ${price}</h1>
-        <h4 align='center'>Source: Binance</h4>
+        <h4 align='center'>Source: {props.tickerSource}</h4>
 
         <h1>{props.navbarTitle}</h1>
 
