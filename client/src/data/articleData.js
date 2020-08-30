@@ -72,6 +72,18 @@ const articleData = {
       "tickerSource":"Binance"
     },
     {
+      "path": "/wnxm",
+      "navbarTitle": "Wrapped NXM",
+      "newsType": "everything",
+      "q": "Wrapped NXM",
+      "language": "en",
+      "country": "",
+      "category": "",
+      "ticker":"WNXMUSDT",
+      "assetType":"crypocurrency",
+      "tickerSource":"Binance"
+    },
+    {
       "path": "/apple",
       "navbarTitle": "Apple",
       "newsType": "everything",
