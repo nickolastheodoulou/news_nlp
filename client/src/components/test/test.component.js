@@ -9,7 +9,6 @@ function Test () {
     fetch(`https://api.binance.com/api/v3/klines?symbol=ETHUSDT&interval=1m`)
     .then(res => res.json())
     .then(response => {
-      console.log(response)
       setCommitHistory(response);
       setIsLoading(false);
     })
@@ -26,7 +25,14 @@ function Test () {
         <div>
           <h1> Test </h1>
           {isLoading && <p>Loading...</p>}
-          {commitHistory}
+          <ul>{commitHistory.map(
+            i => <li key={i}> {
+              i.map(j => <li key={j}> {j} </li>)
+            } next datapoint </li>
+          )}</ul>
+
+
+
         </div>
 
 
