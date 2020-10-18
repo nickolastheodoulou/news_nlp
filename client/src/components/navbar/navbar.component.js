@@ -155,12 +155,6 @@ function Navbar() {
             </Button>
           </Link>
 
-          <Link to="/test" className={classes.menuItem}>
-            <Button color="inherit">
-              Test
-            </Button>
-          </Link>
-
         </Toolbar>
       </AppBar>
     </div>
