@@ -138,3 +138,8 @@ dmypy.json
 model/.DS_Store
 /web_blocker/
 /model/keys.py
+/.idea/workspace.xml
+
+# Local Netlify folder
+.netlify
+/node_modules/
