@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './news.list.component.css'
-
+import Chart from '../chart/chart.component'
 
 function HomeNewsList(props) {
-  const [error, setError] = React.useState(null);
-  const [isLoaded, setIsLoaded] = React.useState(false);
-  const [articles, setItems] = React.useState([]);
-  const [price, setPrice] = React.useState([]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [articles, setItems] = useState([]);
+  const [price, setPrice] = useState([]);
 
-  const [pageNumber, setPageNumber] = React.useState(1)
+  const [pageNumber, setPageNumber] = useState(1)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.assetType === 'crypocurrency'){
       fetch(`https://api.binance.com/api/v1/ticker/price?symbol=${props.ticker}`,{
         dataType: 'jsonp'}
@@ -50,7 +50,7 @@ function HomeNewsList(props) {
         )
     }
 
-  }, [])
+  }, [props.assetType, props.ticker])
 
   function incrementPageNumber() {
     setPageNumber(prevPageNumber => prevPageNumber + 1)
@@ -66,7 +66,7 @@ function HomeNewsList(props) {
 
 
   // the [pageNumber] means useEffect will run only when the state pageNumber is updated
-  React.useEffect(() => {
+  useEffect(() => {
     fetch(`https://murmuring-castle-67752.herokuapp.com/getnews?newsType=${props.newsType}&language=${props.language}&country=${props.country}&q=${props.q}&category=${props.category}&pageNumber=${pageNumber}`, {
         dataType: 'jsonp'}
         )
@@ -86,6 +86,7 @@ function HomeNewsList(props) {
       )
   }, [pageNumber])
 
+
   if (error) {
     return <div>Error: {error.message}</div>
   } else if (!isLoaded) {
@@ -99,11 +100,22 @@ function HomeNewsList(props) {
         <br></br>
         <br></br>
 
-
-        <h1 align='center'>The current price of {props.navbarTitle} is ${price}</h1>
-        <h4 align='center'>Source: {props.tickerSource}</h4>
-
+        {props.tickerSource !== "" &&
+        <>
+          <h1 align='center'>The current price of {props.navbarTitle} is ${price}</h1>
+          <h4 align='center'>Source: {props.tickerSource}</h4>
+        </>
+        }
+  
         <h1>{props.navbarTitle}</h1>
+
+        {props.tickerSource === "Binance" &&
+        <>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <Chart symbol={props.ticker}/>
+        </div>
+        </>
+        }
 
         <ul className="divlist">
           {articles.map(item => (
