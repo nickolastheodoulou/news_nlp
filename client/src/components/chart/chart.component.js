@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import {BarChart, Bar, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
-const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}, {name: 'Page A', uv: 200, pv: 2400, amt: 2400}, {name: 'Page A', uv: 400, pv: 2400, amt: 2400}];
+import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
-  
 
-//javascript create JSON object from two dimensional Array
 function arrayToJSONObject (arr){
   var keys = ["openTime", "open", "high", "low", "close", "volume", "closeTime", "Quote asset volume", "Number of trades", "Taker buy base asset volume", "Taker buy quote asset volume", "Ignore"]
   var formatted = [];
@@ -18,7 +15,7 @@ function arrayToJSONObject (arr){
           object[keys[3]] = parseFloat(d[3])
           object[keys[4]] = parseFloat(d[4])
           object[keys[5]] = parseFloat(d[5])
-          object[keys[6]] = moment(d[6]).format("YYYY-MM-DD");
+          object[keys[6]] = moment(d[6]).format("YYYY-MM-DD hh-mm");
           object[keys[7]] = parseFloat(d[7])
           object[keys[8]] = parseFloat(d[8])
           object[keys[9]] = parseFloat(d[9])
@@ -27,14 +24,12 @@ function arrayToJSONObject (arr){
   return formatted;
 }
 
-function Test () {
+const Chart =(props) => {
   const [binanceData, setBinanceData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(binanceData)
-
   useEffect(() => {
-    fetch(`https://api.binance.com/api/v3/klines?symbol=ETHUSDT&interval=1d`)
+    fetch(`https://api.binance.com/api/v3/klines?symbol=${props.symbol}&interval=1d`)
     .then(res => res.json())
     .then(response => {
       arrayToJSONObject(response)
@@ -46,13 +41,6 @@ function Test () {
 
     return (
       <div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <h3> </h3>
-        <div>
-          <h1> Test </h1>
-          
           {isLoading && <p>Loading...</p>}
           <LineChart width={900} height={500} data={binanceData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
             <Line type="monotone" dataKey="high" stroke="#8884d8" />
@@ -64,23 +52,8 @@ function Test () {
             <YAxis />
             <Tooltip />
           </LineChart>
-
-          <BarChart width={900} height={500} data={binanceData} margin={{top: 20, right: 30, left: 20, bottom: 5}}>
-            <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="closeTime"/>
-            <YAxis/>
-            <Tooltip/>
-            <Legend />
-            <Bar dataKey="high" stackId="a" fill="#8884d8" />
-            <Bar dataKey="low" stackId="a" fill="#82ca9d" />
-            <Bar dataKey="open" stackId="a" fill="#10aaaf" />
-            <Bar dataKey="close" stackId="a" fill="#f8a032" />
-          </BarChart>
-
-          {JSON.stringify(binanceData,2,false)}
-        </div>
       </div>
     )
 }
 
-export default Test;
+export default Chart;
