@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import {fade} from "@material-ui/core";
+import articleData from "../../data/articleData";
 
 
 
@@ -72,13 +73,13 @@ const useStyles = makeStyles((theme) => ({
 function Navbar() {
 
   const classes = useStyles();
-  var query ='';
+
+  /* Create hook for the query*/
+  const [query, setQuery] = React.useState(null);
+  const onChange = (event) => setQuery(event.target.value)
 
 
-  const onChange = (event) => {
-    query = event.target.value
-    console.log(query);
-  };
+
 
   return (
     <div className={classes.root}>
@@ -88,42 +89,51 @@ function Navbar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          */}
+
 
           <Typography variant="h6" className={classes.title}>
-            <Link to="/home" className={classes.title}>
+            <Link to="/fdsa" className={classes.title}>
+              {query}
+            </Link>
+          </Typography>
+          */}
+
+
+
+
+          <Typography variant="h6" className={classes.title}>
+            <Link to="/" className={classes.title}>
               Home
             </Link>
           </Typography>
 
 
+          {/*
+          loop over all the articles exclusing the home and search as these have unique properties
+          */}
+          <div>
+            {
+              articleData.articles.map((item) => {
+                if((item.path !== "/") && (item.path !==  "/search")){
+                  return (
+                    <Link to={item.path} className={classes.menuItem}>
+                      <Button color="inherit">
+                        {item.navbarTitle}
+                      </Button>
+                    </Link>
+                  )
+                }
 
-          <Button color="inherit">
-            <Link to="/finance" className={classes.menuItem}>
-              Finance
-            </Link>
-          </Button>
-
-
-
-          <Link to="/bitcoin" className={classes.menuItem}>
-            <Button color="inherit">
-              Bitcoin
-            </Button>
-          </Link>
-
-          <Link to="/football" className={classes.menuItem}>
-            <Button color="inherit">
-              Football
-            </Button>
-          </Link>
+              })
+            }
+          </div>
 
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <Link to="/">
+            <Link to="/search">
               <InputBase
                 placeholder="Search…"
                 classes={{
@@ -139,9 +149,15 @@ function Navbar() {
 
 
 
-          <Link to="/about" className={classes.menuItem}>
+          <Link to={articleData.about.path} className={classes.menuItem}>
             <Button color="inherit">
-              about
+              {articleData.about.navbarTitle}
+            </Button>
+          </Link>
+
+          <Link to="/test" className={classes.menuItem}>
+            <Button color="inherit">
+              Test
             </Button>
           </Link>
 
