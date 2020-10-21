@@ -11,8 +11,6 @@ import {fade} from "@material-ui/core";
 import articleData from "../../data/articleData";
 
 
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

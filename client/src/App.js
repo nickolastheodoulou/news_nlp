@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from "./components/navbar/navbar.component";
 import About from "./components/about/about.component";
 import News from './components/newslist/news.list.component'
-
+import Marketpairs from "./components/marketpairs/Marketpairs"
 import articleData from "./data/articleData";
 
 
@@ -39,6 +39,7 @@ function App() {
         <Route path="/about" exact component={About} />
 
       </div>
+      <Marketpairs/>
     </Router>
   );
 }

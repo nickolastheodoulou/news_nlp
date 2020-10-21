@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './news.list.component.css'
 import Chart from '../chart/chart.component'
+import Marketpairs from '../marketpairs/Marketpairs'
 
 function HomeNewsList(props) {
+
+  
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [articles, setItems] = useState([]);
   const [price, setPrice] = useState([]);
 
   const [pageNumber, setPageNumber] = useState(1)
+
+
+
+
 
   useEffect(() => {
     if (props.assetType === 'crypocurrency'){
@@ -108,6 +115,7 @@ function HomeNewsList(props) {
         }
   
         <h1>{props.navbarTitle}</h1>
+
 
         {props.tickerSource === "Binance" &&
         <>
