@@ -99,7 +99,10 @@ const articleData = {
   "about": {
     "path": "/about",
     "navbarTitle": "about",
-
+  },
+  "marketpairs": {
+    "path": "/marketpairs",
+    "navbarTitle": "Marketpairs",
   }
 }
 

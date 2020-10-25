@@ -37,9 +37,8 @@ function App() {
 
 
         <Route path="/about" exact component={About} />
-
+        <Route path="/marketpairs" exact component={Marketpairs} />
       </div>
-      <Marketpairs/>
     </Router>
   );
 }

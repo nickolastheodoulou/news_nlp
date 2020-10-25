@@ -1,13 +1,9 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
-class MarketPairs extends React.Component {
+export default function MarketPairs() {
+    const [ethPrice, setEthPrice] = useState("")
 
-    constructor(props) {
-        super(props);
-        this._handleTabClick = this._handleTabClick.bind(this);
-    }
-
-    _getTickerBySymbol(data) {
+    function getTickerBySymbol(data) {
         let ticker = {}
         data.forEach(item => {
             let symbol = item.symbol || item.s;
@@ -24,50 +20,47 @@ class MarketPairs extends React.Component {
         return ticker;
     }
 
-    _handleTabClick(e) {
-        let market = e.currentTarget ? e.currentTarget.getAttribute('data-tab') : e;
-        // this.props.dispatch({type: 'SET_ACTIVE_MARKET',data: {filtered_pairs: Object.keys(this.props.market_pairs).filter(item => item.endsWith(market)),market: market} })
-    }
 
-    _connectSocketStreams(streams) {
+    function connectSocketStreams(streams) {
         streams = streams.join('/');
         let connection = btoa(streams);
-        this[connection] = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
-        this[connection].onmessage = evt => { 
-            let ticker = this._getTickerBySymbol(JSON.parse(evt.data).data)
-            console.log(JSON.parse(evt.data))
+        console.log(connection)
+        connection = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
+        connection.onmessage = evt => { 
+            let ticker = getTickerBySymbol(JSON.parse(evt.data).data)
+            const ethPrice = parseFloat(ticker.ETHUSDT.lastPrice).toFixed(2);
+            console.log(ethPrice)
+            setEthPrice(ethPrice)
             // this.props.dispatch({type: 'UPDATE_MARKET_PAIRS',data: ticker})
             // !this.props.active_market.market && this._handleTabClick('BTC')
         }
-        this[connection].onerror = evt => {
+        connection.onerror = evt => {
             console.error(evt);
         }
     }
 
-    _disconnectSocketStreams(streams){
+    function disconnectSocketStreams(streams){
         streams = streams.join('/');
         let connection = btoa(streams);
-        if (this[connection].readyState === WebSocket.OPEN) {
-            this[connection].close();
+        if (connection.readyState === WebSocket.OPEN) {
+            connection.close();
         }
     }
 
-    componentDidMount() {
-        this._connectSocketStreams(['!ticker@arr'])
-    }
+    useEffect(() => {
+        connectSocketStreams(['!ticker@arr'])
+        return (disconnectSocketStreams(['!ticker@arr']))
+    },[])
 
-    componentWillUnmount() {
-        this._disconnectSocketStreams(['!ticker@arr'])
-    }
 
-    render() {
-        return (
-            <React.Fragment>
-                <h1>nnn</h1>
-            </React.Fragment>    
-      )
-    }
-
+    return (
+        <div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <h1>Hello</h1>
+            <h1>${ethPrice}</h1>
+        </div>
+    )
 }
 
-export default MarketPairs;

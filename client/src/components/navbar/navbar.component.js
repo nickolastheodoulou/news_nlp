@@ -154,6 +154,12 @@ function Navbar() {
             </Button>
           </Link>
 
+          <Link to={articleData.marketpairs.path} className={classes.menuItem}>
+            <Button color="inherit">
+              {articleData.marketpairs.navbarTitle}
+            </Button>
+          </Link>
+
         </Toolbar>
       </AppBar>
     </div>
