@@ -1,38 +1,26 @@
-import React, {useEffect, useState} from 'react'
+import 'primeicons/primeicons.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.css';
+import 'primeflex/primeflex.css';
+import '../../index.css';
+import ReactDOM from 'react-dom';
 
-export default function MarketPairs() {
-    const [ethPrice, setEthPrice] = useState("")
+import React, { useState, useEffect } from 'react';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import axios from 'axios';
+import { setRef } from '@material-ui/core';
 
-    function getTickerBySymbol(data) {
-        let ticker = {}
-        data.forEach(item => {
-            let symbol = item.symbol || item.s;
-            ticker[symbol] = {
-                symbol: symbol,
-                lastPrice: item.lastPrice || item.c,
-                priceChange: item.priceChange || item.p,
-                priceChangePercent: item.priceChangePercent || item.P,
-                highPrice: item.highPrice || item.h,
-                lowPrice: item.lowPrice || item.l,
-                quoteVolume: item.quoteVolume || item.q,
-            }
-        }) 
-        return ticker;
-    }
-
-
+export default function DataTableStripedDemo() {
+    const [products, setProducts] = useState(null);
+        
     function connectSocketStreams(streams) {
         streams = streams.join('/');
         let connection = btoa(streams);
-        console.log(connection)
         connection = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
         connection.onmessage = evt => { 
-            let ticker = getTickerBySymbol(JSON.parse(evt.data).data)
-            const ethPrice = parseFloat(ticker.ETHUSDT.lastPrice).toFixed(2);
-            console.log(ethPrice)
-            setEthPrice(ethPrice)
-            // this.props.dispatch({type: 'UPDATE_MARKET_PAIRS',data: ticker})
-            // !this.props.active_market.market && this._handleTabClick('BTC')
+            var x = JSON.parse(evt.data).data
+            setProducts(x)
         }
         connection.onerror = evt => {
             console.error(evt);
@@ -53,14 +41,26 @@ export default function MarketPairs() {
     },[])
 
 
-    return (
-        <div>
-            <br></br>
-            <br></br>
-            <br></br>
-            <h1>Hello</h1>
-            <h1>${ethPrice}</h1>
-        </div>
-    )
-}
 
+        return (
+            <div>
+                <div className="card">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <DataTable value={products} className="p-datatable-striped">
+                        <Column field="e" header="Event type"></Column>
+                        <Column field="E" header="Event time"></Column>
+                        <Column field="s" header="Symbol"></Column>
+
+                        <Column field="c" header="Last price"></Column>
+                        <Column field="Q" header="Last quantity"></Column>
+                        <Column field="b" header="Best bid price"></Column>
+                        <Column field="B" header="Best bid quantity"></Column>
+
+                    </DataTable>
+                </div>
+            </div>
+        );
+    }
