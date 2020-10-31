@@ -3,13 +3,10 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
 import '../../index.css';
-import ReactDOM from 'react-dom';
 
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import axios from 'axios';
-import { setRef } from '@material-ui/core';
 
 export default function DataTableStripedDemo() {
     const [products, setProducts] = useState(null);
@@ -19,8 +16,34 @@ export default function DataTableStripedDemo() {
         let connection = btoa(streams);
         connection = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
         connection.onmessage = evt => { 
-            var x = JSON.parse(evt.data).data
-            setProducts(x)
+            var wsData = JSON.parse(evt.data).data.map(datapoint => ({ 
+                eventType: datapoint.e, 
+                eventTime: new Date(Number(datapoint.E)).toLocaleString(), 
+                symbol: datapoint.s, 
+                priceChange: datapoint.p,
+                priceChangePercent: datapoint.P,
+                weightedAveragePrice: datapoint.w,
+                firstTradeF_minus_1_price: datapoint.x,
+                lastPrice: datapoint.c,
+                lastQuantity: datapoint.Q,
+                bestBidPrice: datapoint.b,  
+                bestBidQuantity: datapoint.B,
+                bestAskPrice: datapoint.a,
+                bestAskQuantity: datapoint.A,
+                openPrice: datapoint.o,
+                highPrice: datapoint.h,
+                lowPrice: datapoint.l,
+                totalTradedBaseAssetVolume: datapoint.v,
+                totalTradedQuoteAssetVolumne: datapoint.q,
+                statisticsOpenTime: datapoint.O,
+                statisticsCloseTime: datapoint.C,
+                firstTradeId: datapoint.F,
+                lastTradeId: datapoint.L,
+                totalNumberOfTrades: datapoint.n
+            }));
+
+            console.log(JSON.stringify(wsData))
+            setProducts(wsData)
         }
         connection.onerror = evt => {
             console.error(evt);
@@ -50,14 +73,19 @@ export default function DataTableStripedDemo() {
                     <br/>
                     <br/>
                     <DataTable value={products} className="p-datatable-striped">
-                        <Column field="e" header="Event type"></Column>
-                        <Column field="E" header="Event time"></Column>
-                        <Column field="s" header="Symbol"></Column>
+                        <Column field="eventType" header="Event type"></Column>
+                        <Column field="eventTime" header="Ticker time"></Column>
+                        <Column field="symbol" header="Symbol"></Column>
+                        <Column field="lastPrice" header="Last price"></Column>
+                        <Column field="lastQuantity" header="Last quantity"></Column>
 
-                        <Column field="c" header="Last price"></Column>
-                        <Column field="Q" header="Last quantity"></Column>
-                        <Column field="b" header="Best bid price"></Column>
-                        <Column field="B" header="Best bid quantity"></Column>
+                        <Column field="openPrice" header="Open Price"></Column>
+                        <Column field="highPrice" header="High Price"></Column>
+                        <Column field="lowPrice" header="Last Low Price"></Column>
+
+
+                        <Column field="bestBidPrice" header="Best bid price"></Column>
+                        <Column field="bestBidQuantity" header="Best bid quantity"></Column>
 
                     </DataTable>
                 </div>
