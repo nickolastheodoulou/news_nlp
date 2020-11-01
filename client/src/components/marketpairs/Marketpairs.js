@@ -19,7 +19,7 @@ export default function DataTableStripedDemo() {
             var wsData = JSON.parse(evt.data).data.map(datapoint => ({ 
                 eventType: datapoint.e, 
                 eventTime: new Date(Number(datapoint.E)).toLocaleString(), 
-                symbol: datapoint.s, 
+                symbol: datapoint.s,
                 priceChange: datapoint.p,
                 priceChangePercent: datapoint.P,
                 weightedAveragePrice: datapoint.w,
@@ -42,7 +42,12 @@ export default function DataTableStripedDemo() {
                 totalNumberOfTrades: datapoint.n
             }));
 
-            console.log(JSON.stringify(wsData))
+            // console.log(wsData[0].symbol.filter(item => item.endsWith("BTC")))
+            //.filter(item => item.endsWith("BTC"))
+            //console.log(JSON.stringify(wsData))
+
+            wsData = wsData.filter(datapoint => datapoint.symbol.endsWith("BTC"));
+            console.log(wsData)
             setProducts(wsData)
         }
         connection.onerror = evt => {
@@ -63,7 +68,17 @@ export default function DataTableStripedDemo() {
         return (disconnectSocketStreams(['!ticker@arr']))
     },[])
 
+    function countryBodyTemplate(products){
+        let symbol = products.symbol;
 
+        return (
+            <React.Fragment>
+                <span style={{verticalAlign: 'middle', marginLeft: '.5em'}}>{symbol}</span>
+                <img src="showcase/demo/images/flag_placeholder.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt="notworking" />
+            </React.Fragment>
+        );
+    }
+    
 
         return (
             <div>
@@ -73,9 +88,8 @@ export default function DataTableStripedDemo() {
                     <br/>
                     <br/>
                     <DataTable value={products} className="p-datatable-striped">
-                        <Column field="eventType" header="Event type"></Column>
+                        <Column field="symbol" header="Symbol" body={countryBodyTemplate}></Column>
                         <Column field="eventTime" header="Ticker time"></Column>
-                        <Column field="symbol" header="Symbol"></Column>
                         <Column field="lastPrice" header="Last price"></Column>
                         <Column field="lastQuantity" header="Last quantity"></Column>
 
