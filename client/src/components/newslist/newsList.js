@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './news.list.component.css'
-import Chart from '../chart/chart.component'
-import Marketpairs from '../marketpairs/Marketpairs'
+import './newsList.css'
+import Chart from '../chart/chart'
+import MarketPairs from '../marketpairs/Marketpairs'
 
 function HomeNewsList(props) {
 
@@ -123,6 +123,10 @@ function HomeNewsList(props) {
           <Chart symbol={props.ticker}/>
         </div>
         </>
+        }
+
+        {props.symbol !== "" &&
+          <MarketPairs symbol={props.symbol}/>
         }
 
         <ul className="divlist">

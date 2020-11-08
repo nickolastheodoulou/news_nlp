@@ -11,6 +11,7 @@ const articleData = {
       "country": "",
       "category": "",
       "ticker":"",
+      symbol:"",
       "tickerSource":""
     },
     {
@@ -22,6 +23,7 @@ const articleData = {
       "country": "us",
       "category": "",
       "ticker":"",
+      symbol:"",
       "tickerSource":""
     },
     {
@@ -33,6 +35,7 @@ const articleData = {
       "country": "us",
       "category": "business",
       "ticker":"",
+      symbol:"",
       "tickerSource":""
     },
     {
@@ -44,6 +47,7 @@ const articleData = {
       "country": "",
       "category": "",
       "ticker":"BTCUSDT",
+      symbol:"BTC",
       "assetType":"crypocurrency",
       "tickerSource":"Binance"
     },
@@ -56,6 +60,7 @@ const articleData = {
       "country": "",
       "category": "",
       "ticker":"ETHUSDT",
+      symbol:"ETH",
       "assetType":"crypocurrency",
       "tickerSource":"Binance"
     },
@@ -68,6 +73,7 @@ const articleData = {
       "country": "",
       "category": "",
       "ticker":"LTCUSDT",
+      symbol:"LTC",
       "assetType":"crypocurrency",
       "tickerSource":"Binance"
     },
@@ -80,6 +86,7 @@ const articleData = {
       "country": "",
       "category": "",
       "ticker":"WNXMUSDT",
+      symbol:"WNXM",
       "assetType":"crypocurrency",
       "tickerSource":"Binance"
     },
@@ -92,6 +99,7 @@ const articleData = {
       "country": "",
       "category": "",
       "ticker":"",
+      symbol:"",
       "assetType":"stock",
       "tickerSource":"finnhub"
     }

@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
-import Navbar from "./components/navbar/navbar.component";
-import About from "./components/about/about.component";
-import News from './components/newslist/news.list.component'
+import Navbar from "./components/navbar/navbar";
+import About from "./components/about/about";
+import News from './components/newslist/newsList'
 import Marketpairs from "./components/marketpairs/Marketpairs"
 import articleData from "./data/articleData";
 
@@ -29,6 +29,8 @@ function App() {
                         ticker={item.ticker}
                         tickerSource={item.tickerSource}
                         assetType={item.assetType}
+                        symbol={item.symbol}
+
                   />}/>
               )
             })
@@ -37,7 +39,6 @@ function App() {
 
 
         <Route path="/about" exact component={About} />
-        <Route path="/marketpairs" exact component={Marketpairs} />
       </div>
     </Router>
   );

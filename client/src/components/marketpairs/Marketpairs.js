@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
-export default function DataTableStripedDemo() {
+const MarketPairs = (props) => {
     const [products, setProducts] = useState(null);
         
     function connectSocketStreams(streams) {
@@ -46,7 +46,7 @@ export default function DataTableStripedDemo() {
             //.filter(item => item.endsWith("BTC"))
             //console.log(JSON.stringify(wsData))
 
-            wsData = wsData.filter(datapoint => datapoint.symbol.endsWith("BTC"));
+            wsData = wsData.filter(datapoint => datapoint.symbol.endsWith(props.symbol));
             console.log(wsData)
             setProducts(wsData)
         }
@@ -74,7 +74,10 @@ export default function DataTableStripedDemo() {
         return (
             <React.Fragment>
                 <span style={{verticalAlign: 'middle', marginLeft: '.5em'}}>{symbol}</span>
-                <img src="showcase/demo/images/flag_placeholder.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt="notworking" />
+                {/* 
+                <img src="showcase/demo/images/flag_placeholder.png" 
+                onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt="notworking" />
+                */}
             </React.Fragment>
         );
     }
@@ -106,3 +109,5 @@ export default function DataTableStripedDemo() {
             </div>
         );
     }
+
+export default MarketPairs;
