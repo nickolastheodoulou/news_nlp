@@ -40,8 +40,8 @@ const Chart =(props) => {
   }, [])
 
     return (
-      <div>
-          {isLoading && <p>Loading...</p>}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+      {isLoading && <p>Loading...</p>}
           <LineChart width={900} height={500} data={binanceData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
             <Line type="monotone" dataKey="high" stroke="#8884d8" />
             <Line type="monotone" dataKey="low" stroke="#82ca9d" />

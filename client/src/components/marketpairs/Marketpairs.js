@@ -90,7 +90,7 @@ const MarketPairs = (props) => {
                     <br/>
                     <br/>
                     <br/>
-                    <DataTable value={products} className="p-datatable-striped">
+                    <DataTable value={products} className="p-datatable-striped" rows={10}>
                         <Column field="symbol" header="Symbol" body={countryBodyTemplate}></Column>
                         <Column field="eventTime" header="Ticker time"></Column>
                         <Column field="lastPrice" header="Last price"></Column>

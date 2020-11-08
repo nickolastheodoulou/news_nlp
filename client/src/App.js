@@ -3,9 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import Navbar from "./components/navbar/navbar";
 import About from "./components/about/about";
-import News from './components/newslist/newsList'
-import Marketpairs from "./components/marketpairs/Marketpairs"
-import articleData from "./data/articleData";
+import Dashboard from './components/Dashboard/Dashboard'
+import articleData from "./data/newsObject";
 
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
             articleData.articles.map((item) => {
               return (
                 <Route exact path={item.path} render={(props) =>
-                  <News {...props}
+                  <Dashboard {...props}
                         navbarTitle={item.navbarTitle}
                         newsType={item.newsType}
                         q={item.q}

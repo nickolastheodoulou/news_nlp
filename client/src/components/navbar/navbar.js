@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import {fade} from "@material-ui/core";
-import articleData from "../../data/articleData";
+import articleData from "../../data/newsObject";
 
 
 const useStyles = makeStyles((theme) => ({
