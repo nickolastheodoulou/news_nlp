@@ -14,6 +14,7 @@ import articleData from "../../data/newsObject";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginTop: "80px",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -72,12 +73,8 @@ function Navbar() {
 
   const classes = useStyles();
 
-  /* Create hook for the query*/
   const [query, setQuery] = React.useState(null);
   const onChange = (event) => setQuery(event.target.value)
-
-
-
 
   return (
     <div className={classes.root}>

@@ -86,11 +86,7 @@ const MarketPairs = (props) => {
         return (
             <div>
                 <div className="card">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <DataTable value={products} className="p-datatable-striped" rows={10}>
+                    <DataTable value={products} className="p-datatable-striped" scrollable scrollHeight="500px">
                         <Column field="symbol" header="Symbol" body={countryBodyTemplate}></Column>
                         <Column field="eventTime" header="Ticker time"></Column>
                         <Column field="lastPrice" header="Last price"></Column>

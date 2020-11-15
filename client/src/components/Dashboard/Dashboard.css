@@ -11,7 +11,6 @@ h1 {
 
 .divlist{
     vertical-align: middle;
-    horiz-align: center;
     text-align: center;
     width: 90%;
     align-items: center;
@@ -21,8 +20,6 @@ h1 {
     margin: 0 auto;
     padding: 10px;
     position: relative;
-
-
 }
 
 .article{

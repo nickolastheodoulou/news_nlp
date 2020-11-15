@@ -1,17 +1,13 @@
 import React from 'react';
 import './Dashboard.css'
-import Chart from '../chart/chart'
-import MarketPairs from '../marketpairs/Marketpairs'
-import ArticleData from '../articleData/articleData';
-import CurrentPrice from '../currentPrice/currentPrice';
+import Chart from '../Chart/Chart'
+import MarketPairs from '../Marketpairs/Marketpairs'
+import ArticleData from '../ArticleData/ArticleData';
+import CurrentPrice from '../CurrentPrice/CurrentPrice';
 
 const Dashboard = (props) => {
     return (
       <div className="body">
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
         <h1>{props.navbarTitle}</h1>
 
         <CurrentPrice 

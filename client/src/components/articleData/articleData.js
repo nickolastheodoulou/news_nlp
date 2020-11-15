@@ -1,4 +1,5 @@
 import React, {useEffect, useState } from 'react';
+import axios from '../../axios'
 
 const ArticleData = (props) => {
 
@@ -9,14 +10,14 @@ const ArticleData = (props) => {
 
   // the [pageNumber] means useEffect will run only when the state pageNumber is updated
   useEffect(() => {
-    fetch(`https://murmuring-castle-67752.herokuapp.com/getnews?newsType=${props.newsType}&language=${props.language}&country=${props.country}&q=${props.q}&category=${props.category}&pageNumber=${pageNumber}`, {
+    axios.get(`/getnews?newsType=${props.newsType}&language=${props.language}&country=${props.country}&q=${props.q}&category=${props.category}&pageNumber=${pageNumber}`, {
         dataType: 'jsonp'}
         )
-      .then(res => res.json())
       .then(
-        (res) => {
+        response => {
+          console.log(response)
           setIsLoaded(true);
-          setItems(res.articles);
+          setItems(response.data.articles);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -58,10 +59,6 @@ const ArticleData = (props) => {
               <a href={item.url}>
                 <img src={item.urlToImage} alt="Logo" />
               </a>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
             </div>
           ))}
           <br></br>
