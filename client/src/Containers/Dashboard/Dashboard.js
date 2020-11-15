@@ -1,9 +1,9 @@
 import React from 'react';
 import './Dashboard.css'
-import Chart from '../Chart/Chart'
-import MarketPairs from '../Marketpairs/Marketpairs'
-import ArticleData from '../ArticleData/ArticleData';
-import CurrentPrice from '../CurrentPrice/CurrentPrice';
+import Chart from '../../Components/Chart/Chart'
+import MarketPairs from '../../Components/Marketpairs/Marketpairs'
+import ArticleData from '../../Components/ArticleData/ArticleData';
+import CurrentPrice from '../../Components/CurrentPrice/CurrentPrice';
 
 const Dashboard = (props) => {
     return (

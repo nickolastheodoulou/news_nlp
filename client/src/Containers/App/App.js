@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
-import Navbar from "./Components/Navbar/Navbar";
-import About from "./Components/About/About";
-import Dashboard from './Components/Dashboard/Dashboard'
-import articleData from "./data/newsObject";
+import Navbar from "../Navbar/Navbar";
+import About from "../../Components/About/About";
+import Dashboard from '../Dashboard/Dashboard'
+import articleData from "../../data/newsObject";
 
 
 function App() {
