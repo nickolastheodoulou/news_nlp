@@ -38,3 +38,20 @@ h1 {
     display: flex;
     justify-content: center;
 }
+
+.left {
+    float: left;
+    width: 60%;
+}
+
+.right {
+    float: left;
+    width: 40%;
+}
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

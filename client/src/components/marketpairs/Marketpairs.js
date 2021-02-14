@@ -11,7 +11,7 @@ import { Column } from 'primereact/column';
 const MarketPairs = (props) => {
     const [products, setProducts] = useState(null);
         
-    function connectSocketStreams(streams) {
+    const connectSocketStreams = (streams) => {
         streams = streams.join('/');
         let connection = btoa(streams);
         connection = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
@@ -41,13 +41,20 @@ const MarketPairs = (props) => {
                 lastTradeId: datapoint.L,
                 totalNumberOfTrades: datapoint.n
             }));
-
-            // console.log(wsData[0].symbol.filter(item => item.endsWith("BTC")))
-            //.filter(item => item.endsWith("BTC"))
-            //console.log(JSON.stringify(wsData))
-
-            wsData = wsData.filter(datapoint => datapoint.symbol.endsWith(props.symbol));
-            console.log(wsData)
+            
+            wsData = wsData.filter(datapoint => (
+                (datapoint.symbol === `${props.symbol}USDT`) || 
+                (datapoint.symbol === `${props.symbol}BTC`) || 
+                (datapoint.symbol === `${props.symbol}ETH`) || 
+                (datapoint.symbol === `${props.symbol}LTC`) || 
+                (datapoint.symbol === `${props.symbol}ADA`) || 
+                (datapoint.symbol === `${props.symbol}DOT`) || 
+                (datapoint.symbol === `${props.symbol}BCH`) || 
+                (datapoint.symbol === `${props.symbol}XLM`) || 
+                (datapoint.symbol === `${props.symbol}LINK`) || 
+                (datapoint.symbol === `${props.symbol}BNB`) || 
+                (datapoint.symbol === `${props.symbol}XMR`)
+            ))
             setProducts(wsData)
         }
         connection.onerror = evt => {
@@ -91,19 +98,13 @@ const MarketPairs = (props) => {
                         <Column field="eventTime" header="Ticker time"></Column>
                         <Column field="lastPrice" header="Last price"></Column>
                         <Column field="lastQuantity" header="Last quantity"></Column>
-
                         <Column field="openPrice" header="Open Price"></Column>
                         <Column field="highPrice" header="High Price"></Column>
                         <Column field="lowPrice" header="Last Low Price"></Column>
-
-
-                        <Column field="bestBidPrice" header="Best bid price"></Column>
-                        <Column field="bestBidQuantity" header="Best bid quantity"></Column>
-
                     </DataTable>
                 </div>
             </div>
-        );
+        )
     }
 
 export default MarketPairs;

@@ -7,7 +7,7 @@ import CurrentPrice from '../../Components/CurrentPrice/CurrentPrice';
 
 const Dashboard = (props) => {
     return (
-      <div className="body">
+      <div class="row">
         <h1>{props.navbarTitle}</h1>
 
         <CurrentPrice 
@@ -16,25 +16,19 @@ const Dashboard = (props) => {
           navbarTitle={props.navbarTitle} 
           assetType={props.assetType}
         />
-
-        {props.tickerSource === "Binance" &&
-        <div>
+        <div class="left">
           <Chart symbol={props.ticker} tickerSource={props.tickerSource}/>
-        </div>
-        }
-
-        {props.symbol !== "" &&
           <MarketPairs symbol={props.symbol}/>
-        }
-
-        <ArticleData
-          newsType={props.newsType}
-          language={props.language}
-          country={props.country}
-          q={props.q}
-          category={props.category}
-        />
-        
+        </div>
+        <div class="right">
+          <ArticleData
+            newsType={props.newsType}
+            language={props.language}
+            country={props.country}
+            q={props.q}
+            category={props.category}
+          />
+        </div>
       </div>
     );
 }

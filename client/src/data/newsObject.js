@@ -2,39 +2,29 @@ const articleData = {
   articles:[
     {
       path: "/search",
-      navbarTitle: "Your Search",
+      navbarTitle: "Bitcoin",
       newsType: "everything",
-      q: "Apple",
+      q:"bitcoin",
       language: "en",
       country: "",
       category: "",
-      ticker:"",
-      symbol:"",
-      tickerSource:""
+      ticker:"BTCUSDT",
+      symbol:"BTC",
+      assetType:"crypocurrency",
+      tickerSource:"Binance"
     },
     {
       path: "/",
-      navbarTitle: "Home - US Global News",
-      newsType: "top-headlines",
-      q: "",
+      navbarTitle: "Bitcoin",
+      newsType: "everything",
+      q:"bitcoin",
       language: "en",
-      country: "us",
+      country: "",
       category: "",
-      ticker:"",
-      symbol:"",
-      tickerSource:""
-    },
-    {
-      path: "/usbusiness",
-      navbarTitle: "US business News",
-      newsType: "top-headlines",
-      q: "",
-      language: "en",
-      country: "us",
-      category: "business",
-      ticker:"",
-      symbol:"",
-      tickerSource:""
+      ticker:"BTCUSDT",
+      symbol:"BTC",
+      assetType:"crypocurrency",
+      tickerSource:"Binance"
     },
     {
       path: "/bitcoin",
@@ -87,19 +77,6 @@ const articleData = {
       symbol:"WNXM",
       assetType:"crypocurrency",
       tickerSource:"Binance"
-    },
-    {
-      path: "/apple",
-      navbarTitle: "Apple",
-      newsType: "everything",
-      q: "apple",
-      language: "en",
-      country: "",
-      category: "",
-      ticker:"",
-      symbol:"",
-      assetType:"stock",
-      tickerSource:"finnhub"
     }
   ],
   about: {
