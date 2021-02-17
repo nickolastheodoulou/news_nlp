@@ -27,6 +27,19 @@ const articleData = {
       tickerSource:"Binance"
     },
     {
+      path: "/tether",
+      navbarTitle: "Tether",
+      newsType: "everything",
+      q:"tether",
+      language: "en",
+      country: "",
+      category: "",
+      ticker:"USDUSDT",
+      symbol:"USDT",
+      assetType:"crypocurrency",
+      tickerSource:"Binance"
+    },
+    {
       path: "/bitcoin",
       navbarTitle: "Bitcoin",
       newsType: "everything",

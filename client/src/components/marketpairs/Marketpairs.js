@@ -2,15 +2,18 @@ import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
-import '../../index.css';
-
+import './Marketpairs.css';
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import BTC from 'cryptocurrency-icons/32/color/btc.png'
+import ETH from 'cryptocurrency-icons/32/color/eth.png'
+import USDT from 'cryptocurrency-icons/32/color/usdt.png'
+
 
 const MarketPairs = (props) => {
     const [products, setProducts] = useState(null);
-        
+
     const connectSocketStreams = (streams) => {
         streams = streams.join('/');
         let connection = btoa(streams);
@@ -41,19 +44,9 @@ const MarketPairs = (props) => {
                 lastTradeId: datapoint.L,
                 totalNumberOfTrades: datapoint.n
             }));
-            
+        
             wsData = wsData.filter(datapoint => (
-                (datapoint.symbol === `${props.symbol}USDT`) || 
-                (datapoint.symbol === `${props.symbol}BTC`) || 
-                (datapoint.symbol === `${props.symbol}ETH`) || 
-                (datapoint.symbol === `${props.symbol}LTC`) || 
-                (datapoint.symbol === `${props.symbol}ADA`) || 
-                (datapoint.symbol === `${props.symbol}DOT`) || 
-                (datapoint.symbol === `${props.symbol}BCH`) || 
-                (datapoint.symbol === `${props.symbol}XLM`) || 
-                (datapoint.symbol === `${props.symbol}LINK`) || 
-                (datapoint.symbol === `${props.symbol}BNB`) || 
-                (datapoint.symbol === `${props.symbol}XMR`)
+                datapoint.symbol.endsWith(props.symbol)
             ))
             setProducts(wsData)
         }
@@ -75,26 +68,25 @@ const MarketPairs = (props) => {
         return (disconnectSocketStreams(['!ticker@arr']))
     },[])
 
-    function countryBodyTemplate(products){
+    const countryBodyTemplate = (products) =>{
         let symbol = products.symbol;
 
         return (
-            <React.Fragment>
-                <span style={{verticalAlign: 'middle', marginLeft: '.5em'}}>{symbol}</span>
-                {/* 
-                <img src="showcase/demo/images/flag_placeholder.png" 
-                onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt="notworking" />
-                */}
-            </React.Fragment>
+            <div style={{display: 'table'}}>
+                <img style={{width:'32px', height:'32px', verticalAlign: 'bottom'}} src={BTC} alt="not working" />
+                <i style={{verticalAlign:'super', marginRight: '.25em', marginLeft: '.25em'}} class="pi pi-arrow-right"></i>
+                <img style={{width:'32px', height:'32px', verticalAlign: 'bottom'}} src={USDT} alt="not working" />
+                <span style={{verticalAlign: 'super', marginLeft: '.5em'}}>{symbol}</span>
+            </div>
         );
     }
     
 
         return (
-            <div>
+            <div className='datatable-templating-demo'>
                 <div className="card">
                     <DataTable value={products} className="p-datatable-striped" scrollable scrollHeight="500px">
-                        <Column field="symbol" header="Symbol" body={countryBodyTemplate}></Column>
+                        <Column style={{ width:"230px" }} field="symbol"header="Symbol" body={countryBodyTemplate}></Column>
                         <Column field="eventTime" header="Ticker time"></Column>
                         <Column field="lastPrice" header="Last price"></Column>
                         <Column field="lastQuantity" header="Last quantity"></Column>

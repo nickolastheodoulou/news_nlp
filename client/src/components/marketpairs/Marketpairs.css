@@ -1,0 +1,10 @@
+.card {
+  margin-bottom: 2rem;
+}
+
+
+.datatable-templating-demo .table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
