@@ -15,9 +15,9 @@ function App() {
         <Navbar />
         <div>
           {
-            articleData.articles.map((item) => {
+            articleData.articles.map((item, id) => {
               return (
-                <Route exact path={item.path} render={(props) =>
+                <Route key={id} exact path={item.path} render={(props) =>
                   <Dashboard {...props}
                         navbarTitle={item.navbarTitle}
                         newsType={item.newsType}

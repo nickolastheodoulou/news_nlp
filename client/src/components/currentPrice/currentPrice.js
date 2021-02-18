@@ -13,7 +13,6 @@ const CurrentPrice = (props) => {
         .then(
           (res) => {
             res.price = parseFloat(res.price).toFixed(2);
-            console.log(res.price)
             setPrice(res.price);
           },
           // Note: it's important to handle errors here
@@ -44,7 +43,6 @@ const CurrentPrice = (props) => {
           }
         )
     }
-    console.log(`price is ${price}`)
   }, [props.assetType, props.ticker, price])
 
   return(

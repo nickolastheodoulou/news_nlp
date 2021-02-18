@@ -5,7 +5,7 @@ const ArticleData = (props) => {
 
   const [articles, setItems] = useState([]);
   const [pageNumber, setPageNumber] = useState(1)
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // the [pageNumber] means useEffect will run only when the state pageNumber is updated
@@ -15,7 +15,6 @@ const ArticleData = (props) => {
         )
       .then(
         response => {
-          console.log(response)
           setIsLoaded(true);
           setItems(response.data.articles);
         },
@@ -49,8 +48,8 @@ const ArticleData = (props) => {
     return (
     <div>
       <ul className="divlist">
-          {articles.map(item => (
-            <div className="article">
+          {articles.map((item, id) => (
+            <div key={id} className="article">
               <h3>{item.title}</h3>
               Source: <a href={item.url}>{item.source.name}</a>
               <br></br>

@@ -109,10 +109,10 @@ function Navbar() {
           */}
           <div>
             {
-              articleData.articles.map((item) => {
+              articleData.articles.map((item, id) => {
                 if((item.path !== "/") && (item.path !==  "/search")){
                   return (
-                    <Link to={item.path} className={classes.menuItem}>
+                    <Link key={id} to={item.path} className={classes.menuItem}>
                       <Button color="inherit">
                         {item.navbarTitle}
                       </Button>

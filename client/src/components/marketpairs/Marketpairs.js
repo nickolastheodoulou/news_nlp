@@ -46,7 +46,7 @@ const MarketPairs = (props) => {
             }));
         
             wsData = wsData.filter(datapoint => (
-                datapoint.symbol.endsWith(props.symbol)
+                datapoint.symbol.startsWith(props.symbol)
             ))
             setProducts(wsData)
         }
@@ -68,19 +68,14 @@ const MarketPairs = (props) => {
         return (disconnectSocketStreams(['!ticker@arr']))
     },[])
 
-    const countryBodyTemplate = (products) =>{
-        let symbol = products.symbol;
-
-        return (
+    const countryBodyTemplate = (products) => (
             <div style={{display: 'table'}}>
                 <img style={{width:'32px', height:'32px', verticalAlign: 'bottom'}} src={BTC} alt="not working" />
-                <i style={{verticalAlign:'super', marginRight: '.25em', marginLeft: '.25em'}} class="pi pi-arrow-right"></i>
+                <i style={{verticalAlign:'super', marginRight: '.25em', marginLeft: '.25em'}} className="pi pi-arrow-right"></i>
                 <img style={{width:'32px', height:'32px', verticalAlign: 'bottom'}} src={USDT} alt="not working" />
-                <span style={{verticalAlign: 'super', marginLeft: '.5em'}}>{symbol}</span>
+                <span style={{verticalAlign: 'super', marginLeft: '.5em'}}>{products.symbol}</span>
             </div>
-        );
-    }
-    
+        )
 
         return (
             <div className='datatable-templating-demo'>
