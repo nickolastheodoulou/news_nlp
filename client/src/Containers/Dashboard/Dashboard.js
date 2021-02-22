@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css'
 import Chart from '../../Components/Chart/Chart'
-import MarketPairs from '../../Components/Marketpairs/Marketpairs'
+import MarketPairs from '../../Components/MarketPair/Marketpair'
 import ArticleData from '../../Components/ArticleData/ArticleData';
 import CurrentPrice from '../../Components/CurrentPrice/CurrentPrice';
 import openSocket from 'socket.io-client';
