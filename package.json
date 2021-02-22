@@ -23,7 +23,7 @@
     "twit": "^2.2.11"
   },
   "scripts": {
-    "start": "node index.js && node ws.js",
+    "start": "node index.js",
     "start-dev": "nodemon index.js && nodemon ws.js",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
