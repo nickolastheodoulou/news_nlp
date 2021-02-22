@@ -1,11 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Dashboard.css'
 import Chart from '../../Components/Chart/Chart'
 import MarketPairs from '../../Components/Marketpairs/Marketpairs'
 import ArticleData from '../../Components/ArticleData/ArticleData';
 import CurrentPrice from '../../Components/CurrentPrice/CurrentPrice';
- d
+import openSocket from 'socket.io-client';
+
+var socket = openSocket('https://murmuring-castle-67752.herokuapp.com:9898');
+
+
+
 const Dashboard = (props) => {
+  const [ tweets, setTweets ] = useState([])
+  const [ currentBtn, setCurrentBtn ] = useState('')
+
+  useEffect(() => {
+    socket.on('latest tweets', mapTweetsToState)
+  }, [])
+
+  const stopStreaming = () => {
+    setCurrentBtn('stop');
+    socket.emit('stop stream', () => { });
+  }
+
+  const startStreaming = () => {
+    setCurrentBtn('start')
+    socket.emit('start stream', () => { });
+  }
+
+  const mapTweetsToState = (tweet) => {
+    setTweets(prevTweets => prevTweets.concat(tweet));
+  }
     return (
       <div className="row">
         <h1>{props.navbarTitle}</h1>
@@ -29,6 +54,23 @@ const Dashboard = (props) => {
             category={props.category}
           />
         </div>
+
+        <div className='MainContainer'>
+        <button className={(currentBtn === 'start') ? 'ActionBtn ActionBtn--Active' : 'ActionBtn'} onClick={startStreaming}>Start Stream</button>
+        <button className={(currentBtn === 'stop') ? 'ActionBtn ActionBtn--Active' : 'ActionBtn'} onClick={stopStreaming}>Stop Stream</button>
+
+        <div className='TweetContainer'>
+          {tweets.map((tweet) => {
+            return (
+              <div className='TweetItem'>
+                <p className='TweetItem__User'>{tweet.user}</p>
+                <p className='TweetItem__Text'>{tweet.text}</p>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
       </div>
     );
 }
