@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import Navbar from "../Navbar/Navbar";
-import About from "../../Components/About/About";
+import About from "../../Containers/App/App";
 import Dashboard from '../Dashboard/Dashboard'
 import articleData from "../../data/newsObject";
 
