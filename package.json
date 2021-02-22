@@ -28,8 +28,8 @@
     "ws": "node ws.js",
     "app-dev": "nodemon index.js",
     "ws-dev": "nodemon ws.js",
-    "start": "npm-run-all --parallel app ws",
-    "start-dev": "npm-run-all --parallel app ws",
+    "start": "node index.js",
+    "start-dev": "nodemon index.js",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "eslintConfig": {
