@@ -5,9 +5,14 @@ import MarketPairs from '../../Components/MarketPair/Marketpair'
 import ArticleData from '../../Components/ArticleData/ArticleData';
 import CurrentPrice from '../../Components/CurrentPrice/CurrentPrice';
 import openSocket from 'socket.io-client';
+import path from 'path'
 import { baseUrl } from '../../axios'
-const socket = openSocket(`${baseUrl} :${process.env.PORT || 5000}`);
+import * as dotenv from "dotenv";
 
+const envPath = path.join(__dirname, '../../../../.env');
+dotenv.config({ path: envPath });
+
+const socket = openSocket(`${baseUrl}:${process.env.PORT || 5000}`);
 
 const Dashboard = (props) => {
   const [ tweets, setTweets ] = useState([])
