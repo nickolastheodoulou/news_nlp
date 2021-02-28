@@ -32,23 +32,23 @@ function getTweetObject(tweet) {
 }
 
 const tweetsSocket = (io) => {
-    io.on('connection', (client) => {
+    io.on('connection', function (socket) {
         console.log('sockets connected');
         let isStreamStopped = false;
 
-        client.on('stop stream', () => {
+        socket.on('stop stream', () => {
             console.log('stopped streaming tweets');
             stream.stop();
             isStreamStopped = true;
         });
 
-        client.on('restart stream', () => {
+        socket.on('restart stream', () => {
             console.log('restarted streaming tweets');
             stream.start();
             isStreamStopped = false;
         });
 
-        client.on('start stream', () => {
+        socket.on('start stream', () => {
             console.log('started streaming tweets');
 
             if (!isStreamStopped) {
@@ -60,7 +60,7 @@ const tweetsSocket = (io) => {
 
                 let TweetObject = getTweetObject(tweet);
 
-                client.emit('latest tweets', TweetObject);
+                socket.emit('latest tweets', TweetObject);
             });
 
             stream.start();
