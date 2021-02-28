@@ -10,7 +10,7 @@ const http = require('http');
 const tweetsRoute = require('./tweets');
 const myDebug = debug('server:server')
 const io = require('socket.io')
-const request = require('request');
+var request = require('request');
 
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
