@@ -5,9 +5,8 @@ import MarketPairs from '../../Components/MarketPair/Marketpair'
 import ArticleData from '../../Components/ArticleData/ArticleData';
 import CurrentPrice from '../../Components/CurrentPrice/CurrentPrice';
 import openSocket from 'socket.io-client';
-
-var socket = openSocket('https://murmuring-castle-67752.herokuapp.com:9898');
-
+import { baseUrl } from '../../axios'
+const socket = openSocket(`${baseUrl} :${process.env.PORT || 5000}`);
 
 
 const Dashboard = (props) => {
